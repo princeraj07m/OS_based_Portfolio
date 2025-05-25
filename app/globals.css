@@ -1,0 +1,780 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* Custom UI Variables */
+    --icon-size: 64px;
+    --icon-spacing: 16px;
+    --window-padding: 24px;
+    --border-radius: 12px;
+    --shadow-intensity: 50%;
+    --blur-amount: 20px;
+    --animation-duration: 300ms;
+    --primary-color: #8b5cf6;
+    --secondary-color: #06b6d4;
+    --accent-color: #f59e0b;
+    --font-size: 14px;
+    --font-weight: 400;
+    --line-height: 1.5;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    line-height: var(--line-height);
+  }
+}
+
+@layer components {
+  /* Resize cursor utilities */
+  .cursor-ns-resize {
+    cursor: ns-resize;
+  }
+
+  .cursor-ew-resize {
+    cursor: ew-resize;
+  }
+
+  .cursor-nwse-resize {
+    cursor: nwse-resize;
+  }
+
+  .cursor-nesw-resize {
+    cursor: nesw-resize;
+  }
+
+  /* Window resize handle styles */
+  .resize-handle {
+    position: absolute;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+  }
+
+  .resize-handle:hover {
+    background-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .resize-handle-corner {
+    width: 12px;
+    height: 12px;
+  }
+
+  .resize-handle-edge-horizontal {
+    height: 4px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .resize-handle-edge-vertical {
+    width: 4px;
+    top: 12px;
+    bottom: 12px;
+  }
+
+  /* Window states */
+  .window-maximized {
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .window-normal {
+    border-radius: 0.75rem !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .window-resizing {
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .window-resizing * {
+    pointer-events: none;
+  }
+
+  /* Maximize button icons */
+  .maximize-icon {
+    position: relative;
+    display: inline-block;
+  }
+
+  .restore-icon {
+    position: relative;
+    display: inline-block;
+  }
+
+  .restore-icon::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    border: 1px solid currentColor;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Smooth transitions for window state changes */
+  .window-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  /* Prevent content overflow during transitions */
+  .window-content-maximized {
+    height: calc(100vh - 56px - 48px) !important; /* Full height minus taskbar and title bar */
+  }
+
+  .window-content-normal {
+    height: calc(100% - 48px) !important; /* Normal height minus title bar */
+  }
+
+  /* Horizontal icon grid utilities */
+  .desktop-icon-grid {
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: row;
+    justify-items: center;
+    align-items: start;
+  }
+
+  .desktop-icon-grid-mobile {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .desktop-icon-grid-tablet {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  .desktop-icon-grid-desktop {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Responsive utilities */
+  .responsive-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .responsive-flex {
+    @apply flex flex-wrap gap-4;
+  }
+
+  .mobile-stack {
+    @apply flex flex-col space-y-4;
+  }
+
+  .tablet-grid {
+    @apply grid grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+
+  .desktop-sidebar {
+    @apply grid grid-cols-1 lg:grid-cols-4 gap-6;
+  }
+
+  /* Glass effect utilities */
+  .glass-effect {
+    backdrop-filter: blur(var(--blur-amount));
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass-effect {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Animation utilities */
+  .smooth-transition {
+    transition-duration: var(--animation-duration);
+    transition-timing-function: ease-out;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-lg;
+  }
+
+  /* Focus utilities for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+
+  .dark .focus-ring {
+    @apply focus:ring-purple-400 focus:ring-offset-gray-900;
+  }
+
+  /* High contrast mode */
+  .high-contrast {
+    filter: contrast(150%) brightness(110%);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .respect-motion-preference {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Mobile-specific styles */
+  @media (max-width: 768px) {
+    .mobile-full-width {
+      @apply w-full;
+    }
+
+    .mobile-padding {
+      @apply px-4 py-2;
+    }
+
+    .mobile-text {
+      @apply text-base;
+    }
+
+    .mobile-touch-target {
+      min-height: 48px;
+      min-width: 48px;
+      padding: 12px;
+    }
+
+    .desktop-icon-container {
+      min-width: 70px;
+      max-width: 90px;
+    }
+  }
+
+  /* Tablet-specific styles */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .tablet-grid-layout {
+      @apply grid grid-cols-2 gap-4;
+    }
+
+    .tablet-padding {
+      @apply px-6 py-4;
+    }
+
+    .desktop-icon-container {
+      min-width: 80px;
+      max-width: 110px;
+    }
+  }
+
+  /* Desktop-specific styles */
+  @media (min-width: 1024px) {
+    .desktop-grid-layout {
+      @apply grid grid-cols-3 lg:grid-cols-4 gap-6;
+    }
+
+    .desktop-padding {
+      @apply px-8 py-6;
+    }
+
+    .desktop-icon-container {
+      min-width: 72px;
+      max-width: 96px;
+    }
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-lg;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-500;
+  }
+
+  /* Loading animations */
+  .pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .bounce-slow {
+    animation: bounce 2s infinite;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent;
+  }
+
+  .dark .gradient-text {
+    @apply bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent;
+  }
+
+  /* Enhanced visibility utilities */
+  .enhanced-contrast {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+
+  .dark .enhanced-contrast {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Better backdrop blur for start menu */
+  .start-menu-backdrop {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  /* Improved button visibility */
+  .menu-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .menu-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .dark .menu-button {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .menu-button:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Desktop icon improvements */
+  .desktop-icon {
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+  }
+
+  .desktop-icon-selected {
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Text shadow for better readability */
+  .icon-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+  }
+
+  .dark .icon-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Horizontal icon layout specific styles */
+  .horizontal-icon-layout {
+    display: grid;
+    grid-auto-flow: row;
+    justify-items: center;
+    align-items: start;
+    width: 100%;
+  }
+
+  .horizontal-icon-layout .desktop-icon {
+    width: 100%;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Icon text truncation for horizontal layout */
+  .icon-title-horizontal {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    hyphens: auto;
+    line-height: 1.2;
+    max-height: 2.4em;
+  }
+
+  /* Start menu category buttons */
+  .category-button-active {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(168, 85, 247, 0.8));
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  .dark .category-button-active {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(168, 85, 247, 0.9));
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  }
+
+  /* App grid buttons in start menu */
+  .app-grid-button {
+    transition: all 0.2s ease;
+    border-radius: 8px;
+  }
+
+  .app-grid-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark .app-grid-button:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Z-index layers for proper stacking - Updated values */
+  .desktop-background {
+    z-index: 1;
+  }
+
+  .desktop-icons {
+    z-index: 20;
+  }
+
+  .windows-layer {
+    z-index: 1000; /* Much higher base z-index for windows */
+  }
+
+  .taskbar-layer {
+    z-index: 2000; /* Higher than windows */
+  }
+
+  .start-menu-layer {
+    z-index: 3000; /* Highest for start menu */
+  }
+
+  /* Window specific z-index utilities */
+  .window-container {
+    z-index: 1000;
+    position: fixed;
+  }
+
+  .window-active {
+    z-index: 1500;
+  }
+
+  .window-modal {
+    z-index: 2500;
+  }
+
+  /* Hardware acceleration and smooth animations */
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimized horizontal desktop layout */
+  .desktop-horizontal-grid {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: repeat(auto-fit, minmax(auto, max-content));
+    justify-items: center;
+    align-items: start;
+    gap: 1rem;
+    width: 100%;
+    contain: layout style paint;
+  }
+
+  /* Responsive grid columns */
+  .desktop-grid-mobile {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .desktop-grid-tablet {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  .desktop-grid-desktop {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Smooth icon animations */
+  .desktop-icon-smooth {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color
+      0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .desktop-icon-smooth:hover {
+    transform: translateZ(0) scale(1.05);
+  }
+
+  .desktop-icon-smooth:active {
+    transform: translateZ(0) scale(0.98);
+    transition-duration: 0.1s;
+  }
+
+  /* Optimized backdrop blur */
+  .backdrop-blur-optimized {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    will-change: backdrop-filter;
+  }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-auto {
+    will-change: auto;
+  }
+
+  /* Contain layout for better performance */
+  .contain-layout {
+    contain: layout;
+  }
+
+  .contain-paint {
+    contain: paint;
+  }
+
+  .contain-strict {
+    contain: strict;
+  }
+
+  /* Smooth scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Optimized transitions */
+  .transition-smooth {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-fast {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Mobile touch optimizations */
+  @media (max-width: 768px) {
+    .desktop-icon-smooth {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  /* High refresh rate optimizations */
+  @media (min-resolution: 120dpi) {
+    .desktop-icon-smooth {
+      transition-duration: 0.15s;
+    }
+  }
+}
+
+/* Custom animations */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Utility classes for animations */
+.animate-fadeInDown {
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.5s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.4s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Smooth fade in animation for icons */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered animation delays */
+.stagger-1 {
+  animation-delay: 0ms;
+}
+.stagger-2 {
+  animation-delay: 50ms;
+}
+.stagger-3 {
+  animation-delay: 100ms;
+}
+.stagger-4 {
+  animation-delay: 150ms;
+}
+.stagger-5 {
+  animation-delay: 200ms;
+}
+.stagger-6 {
+  animation-delay: 250ms;
+}
+.stagger-7 {
+  animation-delay: 300ms;
+}
+.stagger-8 {
+  animation-delay: 350ms;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .desktop-icon-smooth,
+  .animate-fadeInUp,
+  .transition-smooth,
+  .transition-fast {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
