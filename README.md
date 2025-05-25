@@ -8,7 +8,6 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/princeraj07m/OS_based_Portfolio?style=for-the-badge" />
   <img src="https://img.shields.io/github/stars/princeraj07m/OS_based_Portfolio?style=for-the-badge" />
   <img src="https://img.shields.io/github/forks/princeraj07m/OS_based_Portfolio?style=for-the-badge" />
 </p>
