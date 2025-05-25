@@ -78,24 +78,20 @@ Edit
 ```bash
 git clone https://github.com/princeraj07m/OS_based_Portfolio.git
 cd OS_based_Portfolio
+```
+```bash
 2. Install Dependencies
-bash
-Copy
-Edit
 npm install
+```
+```bash
 3. Run in Dev Mode
-bash
-Copy
-Edit
 npm run dev
+```
+```bash
 4. Build for Production
-bash
-Copy
-Edit
 npm run build
 npm start
-📸 Screenshots
-Desktop	Mobile
+```
 
 👨‍🎨 Made With Passion By
 <h3 align="center"> <a href="https://github.com/princeraj07m">Prince Raj</a> 💻 </h3> <p align="center"> 💼 Frontend Developer <br/> 🎨 Designer • 💡 Creator • 💻 Lifelong Learner </p> <p align="center"> <a href="https://www.linkedin.com/in/princeraj07m/">LinkedIn</a> • <a href="https://twitter.com/princeraj07m">Twitter</a> • <a href="mailto:princeraj07m@gmail.com">Email</a> </p>
