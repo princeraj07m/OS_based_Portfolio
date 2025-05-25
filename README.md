@@ -55,16 +55,15 @@ Each section is treated like an *application window*, making the experience dyna
 - ⚙️ Built for customization — turn your desktop into *you*
 
 ---
-
 ## 📦 Project Structure
 
-📁 os_portfolio/
-├── 📁 components/ # Reusable window + UI components
-├── 📁 pages/ # Next.js pages
-├── 📁 public/ # Static assets
-├── 📁 styles/ # Tailwind + global CSS
-├── 📄 tailwind.config.js
-├── 📄 README.md
+    os_portfolio/
+    ├── components/      # Reusable window + UI components
+    ├── pages/           # Next.js pages
+    ├── public/          # Static assets (images, icons, etc.)
+    ├── styles/          # Tailwind + global CSS styles
+    ├── tailwind.config.js
+    ├── README.md
 
 yaml
 Copy
