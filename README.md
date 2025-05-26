@@ -47,7 +47,7 @@ Each section is treated like an *application window*, making the experience dyna
 
 - 💻 OS-Like UI with taskbar, apps, modals
 - 🪟 Draggable, stackable windows (Projects, About, Resume, Contact)
-- 🌐 Multi-tab structure like a real desktop
+- 🌐 Multi-tab structure like a real desktop os
 - 🌓 Dark/Light mode switch
 - 🧠 Keyboard navigation (Alt + Tab behavior)
 - 📱 Fully responsive on all screen sizes
