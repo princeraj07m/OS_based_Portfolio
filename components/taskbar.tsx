@@ -215,7 +215,7 @@ export function Taskbar({ windows, onWindowClick, onOpenApp, onCloseWindow }: Ta
             target="_blank"
             rel="noopener noreferrer"
             className={`text-sm font-semibold ${
-              isDark ? "text-gray-300 hover:text-white" : "text-white hover:text-gray-200"
+              isDark ? "text-gray-300 hover:text-purple-400" : "text-white hover:text-purple-300"
             } mr-4 transition-colors duration-300`}
           >
             Prince Kumar

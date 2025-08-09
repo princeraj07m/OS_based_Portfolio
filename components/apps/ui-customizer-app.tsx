@@ -507,7 +507,7 @@ export function UICustomizerApp() {
                       <input
                         type="text"
                         value={settings.primaryColor}
-                        onChange={(e) => updateSetting("primaryColor", e.target.value)}
+                        onChange={(e) => updateSetting("primaryColor", (e.target as HTMLInputElement).value)}
                         className={`flex-1 px-3 py-2 rounded border ${isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"}`}
                       />
                     </div>
