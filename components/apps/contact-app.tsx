@@ -25,15 +25,14 @@ export function ContactApp() {
   }
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "your.email@example.com", href: "mailto:your.email@example.com" },
-    { icon: Phone, label: "Phone", value: "(555) 123-4567", href: "tel:+15551234567" },
-    { icon: MapPin, label: "Location", value: "San Francisco, CA", href: "#" },
+    { icon: Mail, label: "Email", value: "princerajce4@gmail.com", href: "mailto:princerajce4@gmail.com" },
+    { icon: Phone, label: "Phone", value: "9142223604", href: "tel:+919142223604" },
+    { icon: MapPin, label: "Location", value: "India", href: "#" },
   ]
 
   const socialLinks = [
-    { icon: Github, label: "GitHub", href: "https://github.com/yourusername" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
-    { icon: Twitter, label: "Twitter", href: "https://twitter.com/yourusername" },
+    { icon: Github, label: "GitHub", href: "https://github.com/princeraj07m" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/princeraj07m" },
   ]
 
   return (

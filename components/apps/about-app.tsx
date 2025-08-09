@@ -10,23 +10,34 @@ export function AboutApp() {
   const isDark = theme === "dark"
 
   const skills = [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
+    "C++",
     "Python",
-    "PostgreSQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
-    "Git",
+    "JavaScript",
+    "React.js",
+    "Node.js",
+    "Express.js",
     "Tailwind CSS",
-    "GraphQL",
+    "FastAPI",
+    "LangChain",
+    "MongoDB",
+    "MySQL",
+    "PostgreSQL",
+    "Git",
+    "GitHub",
+    "Netlify",
+    "Vercel",
+    "Firebase",
+    "Docker",
+    "AI/ML",
+    "Blockchain",
+    "IoT",
+    "Web3",
+    "Cloud",
   ]
 
   const interests = [
     { icon: Code, label: "Coding", description: "Building cool stuff" },
-    { icon: Coffee, label: "Coffee", description: "Fuel for creativity" },
+    { icon: Coffee, label: "Problem-Solving", description: "Brainstorming innovative tech solutions" },
     { icon: Gamepad2, label: "Gaming", description: "Strategy & RPGs" },
     { icon: Music, label: "Music", description: "Electronic & Jazz" },
   ]
@@ -41,10 +52,10 @@ export function AboutApp() {
               : "bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25"
           }`}
         >
-          <span className="text-white text-2xl font-bold">YN</span>
+          <span className="text-white text-2xl font-bold">PR</span>
         </div>
-        <h1 className={`text-2xl font-bold ${isDark ? "text-gray-100" : "text-gray-800"}`}>Your Name</h1>
-        <p className={isDark ? "text-gray-400" : "text-gray-600"}>Full Stack Developer & Problem Solver</p>
+        <h1 className={`text-2xl font-bold ${isDark ? "text-gray-100" : "text-gray-800"}`}>Prince Raj</h1>
+        <p className={isDark ? "text-gray-400" : "text-gray-600"}>Full Stack Developer | AI & IoT Innovator | MERN & Blockchain Enthusiast</p>
       </div>
 
       <Card className={isDark ? "bg-gray-800/50 border-gray-700" : "bg-white/80 border-gray-200"}>
@@ -53,9 +64,7 @@ export function AboutApp() {
         </CardHeader>
         <CardContent>
           <p className={`leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-            Passionate developer with 3+ years of experience building web applications. I love creating intuitive user
-            experiences and solving complex problems with clean, efficient code. Always eager to learn new technologies
-            and take on challenging projects.
+            I’m a passionate and versatile developer specializing in MERN stack, AI/ML, Blockchain, and IoT solutions. With a knack for building impactful projects that solve real-world problems, I aim to merge innovation with functionality in every product I create.
           </p>
         </CardContent>
       </Card>

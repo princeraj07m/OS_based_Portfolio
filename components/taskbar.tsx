@@ -99,7 +99,7 @@ export function Taskbar({ windows, onWindowClick, onOpenApp, onCloseWindow }: Ta
 
         {/* Separator */}
         <div className={`w-px h-8 ${isDark ? "bg-gray-600/50" : "bg-white/30"} mr-4`} />
-
+ 
         {/* App Icons for Open Windows */}
         <div className="flex items-center gap-2 flex-1">
           {windows.map((window) => {
@@ -209,9 +209,21 @@ export function Taskbar({ windows, onWindowClick, onOpenApp, onCloseWindow }: Ta
             </div>
           )}
 
+          {/* Prince Kumar Name */}
+          <a
+            href="https://techcertificates.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`text-sm font-semibold ${
+              isDark ? "text-gray-300 hover:text-white" : "text-white hover:text-gray-200"
+            } mr-4 transition-colors duration-300`}
+          >
+            Prince Kumar
+          </a>
+
           {/* Separator */}
           <div className={`w-px h-8 ${isDark ? "bg-gray-600/50" : "bg-white/30"}`} />
-
+ 
           {/* Clock */}
           <div
             className={`font-mono text-sm transition-colors duration-300 ${

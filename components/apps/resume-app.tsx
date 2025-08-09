@@ -8,36 +8,33 @@ import { Download, MapPin, Mail, Phone, Globe } from "lucide-react"
 export function ResumeApp() {
   const experience = [
     {
-      title: "Senior Frontend Developer",
-      company: "Tech Innovations Inc.",
-      period: "2022 - Present",
-      description:
-        "Led development of React-based web applications, mentored junior developers, and implemented modern development practices.",
+      title: "Intern",
+      company: "Codeship",
+      period: "July 2025 - Sept 2025",
+      description: "Gained hands-on experience with industry-standard development practices.",
       achievements: [
-        "Improved application performance by 40%",
-        "Led team of 4 developers",
-        "Implemented CI/CD pipeline",
+        "Contributed to live projects.",
+        "Worked with a team of experienced developers.",
       ],
     },
     {
-      title: "Full Stack Developer",
-      company: "Digital Solutions LLC",
-      period: "2020 - 2022",
-      description: "Developed and maintained full-stack applications using React, Node.js, and PostgreSQL.",
+      title: "Full Stack Intern",
+      company: "Webloom Tech",
+      period: "June 2024 – Aug 2024",
+      description: "Developed AI-integrated e-commerce dashboard.",
       achievements: [
-        "Built 5+ production applications",
-        "Reduced server costs by 30%",
-        "Implemented automated testing",
+        "Optimized web performance, reducing load time by 30%.",
+        "Implemented responsive UI with Tailwind CSS and React.js.",
       ],
     },
   ]
 
   const education = [
     {
-      degree: "Bachelor of Science in Computer Science",
-      school: "University of Technology",
-      period: "2016 - 2020",
-      gpa: "3.8/4.0",
+      degree: "B.Tech in Computer Science and Engineering",
+      school: "[Your College Name]",
+      period: "2022 – 2026",
+      gpa: "9.0",
     },
   ]
 
@@ -45,31 +42,33 @@ export function ResumeApp() {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="text-center border-b pb-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">Your Name</h1>
-        <p className="text-lg text-gray-600 mb-4">Full Stack Developer</p>
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">Prince Raj</h1>
+        <p className="text-lg text-gray-600 mb-4">Full Stack Developer | AI & IoT Innovator | MERN & Blockchain Enthusiast</p>
 
         <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
           <div className="flex items-center gap-1">
             <Mail className="w-4 h-4" />
-            your.email@example.com
+            princerajce4@gmail.com
           </div>
           <div className="flex items-center gap-1">
             <Phone className="w-4 h-4" />
-            (555) 123-4567
+            9142223604
           </div>
           <div className="flex items-center gap-1">
             <MapPin className="w-4 h-4" />
-            San Francisco, CA
+            India
           </div>
           <div className="flex items-center gap-1">
             <Globe className="w-4 h-4" />
-            yourportfolio.com
+            princeraj07m.github.io
           </div>
         </div>
 
-        <Button className="mt-4">
-          <Download className="w-4 h-4 mr-2" />
-          Download PDF
+        <Button className="mt-4" asChild>
+          <a href="/prince_resume.pdf" download>
+            <Download className="w-4 h-4 mr-2" />
+            Download PDF
+          </a>
         </Button>
       </div>
 
@@ -126,9 +125,9 @@ export function ResumeApp() {
         <CardContent>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">Frontend</h4>
+              <h4 className="font-medium text-gray-800 mb-2">Programming Languages</h4>
               <div className="flex flex-wrap gap-1">
-                {["React", "Next.js", "TypeScript", "Tailwind CSS"].map((skill) => (
+                {["C++", "Python", "JavaScript"].map((skill) => (
                   <Badge key={skill} variant="secondary" className="text-xs">
                     {skill}
                   </Badge>
@@ -136,9 +135,39 @@ export function ResumeApp() {
               </div>
             </div>
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">Backend</h4>
+              <h4 className="font-medium text-gray-800 mb-2">Frameworks & Libraries</h4>
               <div className="flex flex-wrap gap-1">
-                {["Node.js", "Python", "PostgreSQL", "MongoDB"].map((skill) => (
+                {["React.js", "Node.js", "Express.js", "Tailwind CSS", "FastAPI", "LangChain"].map((skill) => (
+                  <Badge key={skill} variant="secondary" className="text-xs">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-800 mb-2">Databases</h4>
+              <div className="flex flex-wrap gap-1">
+                {["MongoDB", "MySQL", "PostgreSQL"].map((skill) => (
+                  <Badge key={skill} variant="secondary" className="text-xs">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-800 mb-2">Tools & Platforms</h4>
+              <div className="flex flex-wrap gap-1">
+                {["Git", "GitHub", "Netlify", "Vercel", "Firebase", "Docker"].map((skill) => (
+                  <Badge key={skill} variant="secondary" className="text-xs">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-800 mb-2">Technologies</h4>
+              <div className="flex flex-wrap gap-1">
+                {["AI/ML", "Blockchain", "IoT", "Web3", "Cloud"].map((skill) => (
                   <Badge key={skill} variant="secondary" className="text-xs">
                     {skill}
                   </Badge>

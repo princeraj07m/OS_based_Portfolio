@@ -81,7 +81,7 @@ export function BootScreen() {
               isDark ? "from-purple-400 to-pink-400" : "from-blue-400 to-cyan-400"
             } bg-clip-text text-transparent animate-pulse`}
           >
-            DevOS
+            Prince Kumar
           </h1>
           <div
             className={`absolute -inset-4 ${
@@ -89,8 +89,8 @@ export function BootScreen() {
             } blur-xl rounded-lg animate-pulse`}
           />
         </div>
-        <p className="text-xl opacity-80 font-light">Developer Portfolio Operating System</p>
-        <p className="text-sm opacity-60 mt-2">Enhanced Edition with Dark Mode</p>
+        <p className="text-xl opacity-80 font-light">Operating System</p>
+        <p className="text-sm opacity-60 mt-2">Explore my works in OS mode</p>
       </div>
 
       <div className="w-96 mb-6 z-10">
@@ -115,7 +115,7 @@ export function BootScreen() {
       </p>
 
       <div className="absolute bottom-8 text-xs opacity-50 z-10 text-center">
-        <p>© 2024 Your Name - Developer Portfolio v3.0</p>
+        <p>© 2025 Prince Kumar - Developer Portfolio v-os</p>
         <p className="mt-1">Powered by Next.js & Tailwind CSS</p>
       </div>
     </div>

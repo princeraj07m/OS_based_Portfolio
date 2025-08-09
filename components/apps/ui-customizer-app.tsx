@@ -107,7 +107,7 @@ export function UICustomizerApp() {
   const updateSetting = (key: keyof UISettings, value: any) => {
     setSettings((prev) => ({ ...prev, [key]: value }))
     if (isLivePreview) {
-      applySettings({ ...settings, [key]: value })
+      applySettings({ ...settings, [key]: value } as UISettings)
     }
   }
 
@@ -128,6 +128,22 @@ export function UICustomizerApp() {
     root.style.setProperty("--font-size", `${newSettings.fontSize}px`)
     root.style.setProperty("--font-weight", newSettings.fontWeight)
     root.style.setProperty("--line-height", newSettings.lineHeight.toString())
+  }
+
+  const applyPreset = (preset: UISettings) => {
+    setSettings(preset)
+    applySettings(preset)
+  }
+
+  const applyPalette = (palette: { primary: string; secondary: string; accent: string }) => {
+    const newSettings = {
+      ...settings,
+      primaryColor: palette.primary,
+      secondaryColor: palette.secondary,
+      accentColor: palette.accent,
+    }
+    setSettings(newSettings)
+    applySettings(newSettings)
   }
 
   const presets = {
@@ -324,7 +340,7 @@ export function UICustomizerApp() {
                 <CardContent>
                   <div className="grid grid-cols-2 gap-2">
                     {Object.entries(presets).map(([name, preset]) => (
-                      <Button key={name} variant="outline" onClick={() => setSettings(preset)} className="capitalize">
+                      <Button key={name} variant="outline" onClick={() => applyPreset(preset)} className="capitalize">
                         {name}
                       </Button>
                     ))}
@@ -460,11 +476,7 @@ export function UICustomizerApp() {
                         key={palette.name}
                         variant="outline"
                         className="h-auto p-3 flex flex-col items-start"
-                        onClick={() => {
-                          updateSetting("primaryColor", palette.primary)
-                          updateSetting("secondaryColor", palette.secondary)
-                          updateSetting("accentColor", palette.accent)
-                        }}
+                        onClick={() => applyPalette(palette)}
                       >
                         <div className="flex gap-2 mb-2">
                           <div className="w-4 h-4 rounded" style={{ backgroundColor: palette.primary }} />
@@ -489,7 +501,7 @@ export function UICustomizerApp() {
                       <input
                         type="color"
                         value={settings.primaryColor}
-                        onChange={(e) => updateSetting("primaryColor", e.target.value)}
+                        onInput={(e) => updateSetting("primaryColor", (e.target as HTMLInputElement).value)}
                         className="w-12 h-10 rounded border"
                       />
                       <input
@@ -507,13 +519,13 @@ export function UICustomizerApp() {
                       <input
                         type="color"
                         value={settings.secondaryColor}
-                        onChange={(e) => updateSetting("secondaryColor", e.target.value)}
+                        onInput={(e) => updateSetting("secondaryColor", (e.target as HTMLInputElement).value)}
                         className="w-12 h-10 rounded border"
                       />
                       <input
                         type="text"
                         value={settings.secondaryColor}
-                        onChange={(e) => updateSetting("secondaryColor", e.target.value)}
+                        onInput={(e) => updateSetting("secondaryColor", (e.target as HTMLInputElement).value)}
                         className={`flex-1 px-3 py-2 rounded border ${isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"}`}
                       />
                     </div>
@@ -525,13 +537,13 @@ export function UICustomizerApp() {
                       <input
                         type="color"
                         value={settings.accentColor}
-                        onChange={(e) => updateSetting("accentColor", e.target.value)}
+                        onInput={(e) => updateSetting("accentColor", (e.target as HTMLInputElement).value)}
                         className="w-12 h-10 rounded border"
                       />
                       <input
                         type="text"
                         value={settings.accentColor}
-                        onChange={(e) => updateSetting("accentColor", e.target.value)}
+                        onInput={(e) => updateSetting("accentColor", (e.target as HTMLInputElement).value)}
                         className={`flex-1 px-3 py-2 rounded border ${isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"}`}
                       />
                     </div>
@@ -720,7 +732,7 @@ export function UICustomizerApp() {
 
           {/* Footer Actions */}
           <div className={`p-4 border-t ${isDark ? "border-gray-700" : "border-gray-200"} flex gap-2`}>
-            <Button variant="outline" onClick={() => setSettings(presets.modern)} className="flex-1">
+            <Button variant="outline" onClick={() => applyPreset(presets.modern)} className="flex-1">
               <RotateCcw className="w-4 h-4 mr-2" />
               Reset
             </Button>

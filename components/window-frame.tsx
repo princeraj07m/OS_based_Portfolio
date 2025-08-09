@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Minus, Square, X } from "lucide-react"
+import { Minus, Square, X, Minimize2 } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
 
 interface WindowFrameProps {
@@ -55,7 +55,12 @@ export function WindowFrame({
         setIsMaximized(true)
       } else if (isMaximized && !mobile) {
         // If switching from mobile to desktop while maximized, keep maximized
-        maximizeWindow()
+        // Re-apply maximized state for desktop, don't toggle
+        setPosition({ x: 0, y: 0 })
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight - 56, // Account for taskbar height
+        })
       }
     }
 
@@ -328,13 +333,7 @@ export function WindowFrame({
               }}
               title={isMaximized ? "Restore" : "Maximize"}
             >
-              {isMaximized ? (
-                <div className="w-3 h-3 border border-current">
-                  <div className="w-2 h-2 border border-current absolute -top-0.5 -right-0.5 bg-current/10" />
-                </div>
-              ) : (
-                <Square className="w-3 h-3" />
-              )}
+              {isMaximized ? <Minimize2 className="w-3 h-3" /> : <Square className="w-3 h-3" />}
             </Button>
           )}
           <Button

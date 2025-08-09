@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { useTheme } from "@/components/theme-provider"
 import {
   User,
@@ -113,7 +114,7 @@ export function StartMenu({ isOpen, onClose, onOpenApp }: StartMenuProps) {
 
       {/* Start Menu */}
       <div
-        className={`fixed bottom-16 left-4 w-96 h-[600px] rounded-xl shadow-2xl border backdrop-blur-xl transition-all duration-300 ${
+        className={`fixed bottom-16 left-4 w-96 h-[600px] rounded-xl shadow-2xl border backdrop-blur-xl transition-all duration-300 flex flex-col ${
           isDark
             ? "bg-gray-900/98 border-gray-600/60 shadow-black/60"
             : "bg-white/98 border-gray-200/60 shadow-black/30"
@@ -151,7 +152,7 @@ export function StartMenu({ isOpen, onClose, onOpenApp }: StartMenuProps) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 flex flex-col min-h-0">
           {/* Category Tabs */}
           <div className={`p-3 border-b ${isDark ? "border-gray-600/60" : "border-gray-200/60"}`}>
             <div className="flex gap-1 overflow-x-auto">
@@ -177,91 +178,97 @@ export function StartMenu({ isOpen, onClose, onOpenApp }: StartMenuProps) {
             </div>
           </div>
 
-          <div className="h-full overflow-y-auto custom-scrollbar">
-            {/* Apps Grid */}
+          <ScrollArea className="flex-1">
             <div className="p-3">
-              <h4 className={`text-sm font-medium mb-3 ${isDark ? "text-gray-200" : "text-gray-700"}`}>
-                Applications
-                {searchQuery && ` (${categoryFilteredApps.length} results)`}
-              </h4>
-              <div className="grid grid-cols-3 gap-2">
-                {categoryFilteredApps.map((app) => (
-                  <Button
-                    key={app.id}
-                    variant="ghost"
-                    className={`h-auto p-3 flex flex-col items-center gap-2 relative transition-all duration-200 ${
-                      isDark
-                        ? "hover:bg-gray-700/60 text-gray-200 hover:text-gray-100"
-                        : "hover:bg-gray-100/60 text-gray-700 hover:text-gray-900"
-                    }`}
-                    onClick={() => {
-                      onOpenApp(app.id, app.title, <div>App Component</div>)
-                      onClose()
-                    }}
-                  >
-                    {app.isNew && (
-                      <Badge className="absolute -top-1 -right-1 text-xs bg-red-500 text-white px-1 py-0.5">New</Badge>
-                    )}
-                    <app.icon className={`w-6 h-6 ${isDark ? "text-gray-200" : "text-gray-600"}`} />
-                    <span className="text-xs text-center leading-tight">{app.title}</span>
-                  </Button>
-                ))}
+              {/* Apps Grid */}
+              <div>
+                <h4 className={`text-sm font-medium mb-3 ${isDark ? "text-gray-200" : "text-gray-700"}`}>
+                  Applications
+                  {searchQuery && ` (${categoryFilteredApps.length} results)`}
+                </h4>
+                <div className="grid grid-cols-3 gap-2">
+                  {categoryFilteredApps.map((app) => (
+                    <Button
+                      key={app.id}
+                      variant="ghost"
+                      className={`h-auto p-3 flex flex-col items-center gap-2 relative transition-all duration-200 ${
+                        isDark
+                          ? "hover:bg-gray-700/60 text-gray-200 hover:text-gray-100"
+                          : "hover:bg-gray-100/60 text-gray-700 hover:text-gray-900"
+                      }`}
+                      onClick={() => {
+                        onOpenApp(app.id, app.title, <div>App Component</div>)
+                        onClose()
+                      }}
+                    >
+                      {app.isNew && (
+                        <Badge className="absolute -top-1 -right-1 text-xs bg-red-500 text-white px-1 py-0.5">
+                          New
+                        </Badge>
+                      )}
+                      <app.icon className={`w-6 h-6 ${isDark ? "text-gray-200" : "text-gray-600"}`} />
+                      <span className="text-xs text-center leading-tight">{app.title}</span>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              <Separator className={`my-3 ${isDark ? "bg-gray-600/60" : "bg-gray-200/60"}`} />
+
+              {/* Recent Files */}
+              <div>
+                <h4 className={`text-sm font-medium mb-3 ${isDark ? "text-gray-200" : "text-gray-700"}`}>
+                  Recent Files
+                </h4>
+                <div className="space-y-2">
+                  {recentFiles.map((file, index) => (
+                    <Button
+                      key={index}
+                      variant="ghost"
+                      className={`w-full justify-start h-auto p-2 transition-all duration-200 ${
+                        isDark
+                          ? "hover:bg-gray-700/60 text-gray-200 hover:text-gray-100"
+                          : "hover:bg-gray-100/60 text-gray-700 hover:text-gray-900"
+                      }`}
+                    >
+                      <file.icon className={`w-4 h-4 mr-3 ${isDark ? "text-gray-300" : "text-gray-500"}`} />
+                      <div className="flex-1 text-left">
+                        <p className={`text-sm ${isDark ? "text-gray-200" : "text-gray-800"}`}>{file.name}</p>
+                        <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-600"}`}>{file.time}</p>
+                      </div>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              <Separator className={`my-3 ${isDark ? "bg-gray-600/60" : "bg-gray-200/60"}`} />
+
+              {/* Quick Actions */}
+              <div>
+                <h4 className={`text-sm font-medium mb-3 ${isDark ? "text-gray-200" : "text-gray-700"}`}>
+                  Quick Actions
+                </h4>
+                <div className="grid grid-cols-2 gap-2">
+                  {quickActions.map((action) => (
+                    <Button
+                      key={action.id}
+                      variant="outline"
+                      size="sm"
+                      onClick={action.action}
+                      className={`justify-start transition-all duration-200 ${
+                        isDark
+                          ? "border-gray-600/60 hover:bg-gray-700/60 text-gray-200 hover:text-gray-100 hover:border-gray-500/60"
+                          : "border-gray-300/60 hover:bg-gray-100/60 text-gray-700 hover:text-gray-900 hover:border-gray-400/60"
+                      }`}
+                    >
+                      <action.icon className="w-4 h-4 mr-2" />
+                      {action.title}
+                    </Button>
+                  ))}
+                </div>
               </div>
             </div>
-
-            <Separator className={isDark ? "bg-gray-600/60" : "bg-gray-200/60"} />
-
-            {/* Recent Files */}
-            <div className="p-3">
-              <h4 className={`text-sm font-medium mb-3 ${isDark ? "text-gray-200" : "text-gray-700"}`}>Recent Files</h4>
-              <div className="space-y-2">
-                {recentFiles.map((file, index) => (
-                  <Button
-                    key={index}
-                    variant="ghost"
-                    className={`w-full justify-start h-auto p-2 transition-all duration-200 ${
-                      isDark
-                        ? "hover:bg-gray-700/60 text-gray-200 hover:text-gray-100"
-                        : "hover:bg-gray-100/60 text-gray-700 hover:text-gray-900"
-                    }`}
-                  >
-                    <file.icon className={`w-4 h-4 mr-3 ${isDark ? "text-gray-300" : "text-gray-500"}`} />
-                    <div className="flex-1 text-left">
-                      <p className={`text-sm ${isDark ? "text-gray-200" : "text-gray-800"}`}>{file.name}</p>
-                      <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-600"}`}>{file.time}</p>
-                    </div>
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            <Separator className={isDark ? "bg-gray-600/60" : "bg-gray-200/60"} />
-
-            {/* Quick Actions */}
-            <div className="p-3">
-              <h4 className={`text-sm font-medium mb-3 ${isDark ? "text-gray-200" : "text-gray-700"}`}>
-                Quick Actions
-              </h4>
-              <div className="grid grid-cols-2 gap-2">
-                {quickActions.map((action) => (
-                  <Button
-                    key={action.id}
-                    variant="outline"
-                    size="sm"
-                    onClick={action.action}
-                    className={`justify-start transition-all duration-200 ${
-                      isDark
-                        ? "border-gray-600/60 hover:bg-gray-700/60 text-gray-200 hover:text-gray-100 hover:border-gray-500/60"
-                        : "border-gray-300/60 hover:bg-gray-100/60 text-gray-700 hover:text-gray-900 hover:border-gray-400/60"
-                    }`}
-                  >
-                    <action.icon className="w-4 h-4 mr-2" />
-                    {action.title}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
+          </ScrollArea>
         </div>
 
         {/* Footer */}
