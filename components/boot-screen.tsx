@@ -3,10 +3,18 @@
 import { useState, useEffect } from "react"
 import { useTheme } from "@/components/theme-provider"
 
+interface Particle {
+  left: string;
+  top: string;
+  animationDelay: string;
+  animationDuration: string;
+}
+
 export function BootScreen() {
   const [progress, setProgress] = useState(0)
   const [currentText, setCurrentText] = useState("Initializing...")
   const [dots, setDots] = useState("")
+  const [particles, setParticles] = useState<Particle[]>([])
   const { theme } = useTheme()
 
   const bootMessages = [
@@ -19,6 +27,14 @@ export function BootScreen() {
   ]
 
   useEffect(() => {
+    const newParticles = Array.from({ length: 50 }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 3}s`,
+      animationDuration: `${2 + Math.random() * 3}s`,
+    }));
+    setParticles(newParticles);
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         const newProgress = prev + 1.5
@@ -53,16 +69,11 @@ export function BootScreen() {
     >
       {/* Animated background particles */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
+        {particles.map((particle, i) => (
           <div
             key={i}
             className={`absolute w-1 h-1 ${isDark ? "bg-purple-400" : "bg-blue-300"} rounded-full opacity-20 animate-pulse`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-            }}
+            style={particle}
           />
         ))}
       </div>

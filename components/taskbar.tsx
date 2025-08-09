@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { StartMenu } from "@/components/start-menu"
 import { useTheme } from "@/components/theme-provider"
+import { AchievementsApp } from "@/components/apps/achievements-app"
 import {
   User,
   FolderOpen,
@@ -68,7 +69,7 @@ export function Taskbar({ windows, onWindowClick, onOpenApp, onCloseWindow }: Ta
   return (
     <>
       <div
-        className={`fixed bottom-0 left-0 right-0 h-14 border-t backdrop-blur-md transition-all duration-300 ${
+        className={`fixed bottom-0 left-0 right-0 h-28 border-t backdrop-blur-md transition-all duration-300 ${
           isDark
             ? "bg-gradient-to-r from-gray-900/90 to-slate-900/90 border-gray-700/50"
             : "bg-gradient-to-r from-blue-600/90 to-blue-700/90 border-blue-500/50"
@@ -210,16 +211,24 @@ export function Taskbar({ windows, onWindowClick, onOpenApp, onCloseWindow }: Ta
           )}
 
           {/* Prince Kumar Name */}
-          <a
-            href="https://techcertificates.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`text-sm font-semibold ${
-              isDark ? "text-gray-300 hover:text-purple-400" : "text-white hover:text-purple-300"
-            } mr-4 transition-colors duration-300`}
-          >
-            Prince Kumar
-          </a>
+          <div className="flex flex-col items-end mr-4">
+            <a
+              href="https://techcertificates.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-lg font-semibold ${
+                isDark ? "text-gray-300 hover:text-purple-400" : "text-white hover:text-purple-300"
+              } transition-colors duration-300`}
+            >
+              Prince Kumar
+            </a>
+            <button
+              onClick={() => onOpenApp("achievements", "Achievements", <AchievementsApp />)}
+              className={`text-xs mt-1 ${isDark ? "text-gray-400 hover:text-purple-400" : "text-blue-200 hover:text-white"} transition-colors duration-300`}
+            >
+              Check out achievements
+            </button>
+          </div>
 
           {/* Separator */}
           <div className={`w-px h-8 ${isDark ? "bg-gray-600/50" : "bg-white/30"}`} />

@@ -308,7 +308,7 @@ export function Desktop() {
               <DesktopIcon
                 title={icon.title}
                 icon={icon.icon}
-                onDoubleClick={() => openWindow(icon.id, icon.title, icon.component)}
+                onOpen={() => openWindow(icon.id, icon.title, icon.component)}
                 className="w-full max-w-none transform-gpu" // Enable GPU acceleration
               />
             </div>

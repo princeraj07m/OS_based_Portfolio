@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://princeraj07m.live/sitemap.xml
